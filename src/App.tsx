@@ -15,7 +15,11 @@ function App() {
   const [error, setError] = useState<string | null>(null);
 
   // 2. 將基礎網址換成正確的 OKANE API
-  const API_BASE_URL = 'https://okane.uniba.jp/api';
+  // 把原本的這行：
+//const API_BASE_URL = 'https://okane.uniba.jp/api';
+
+// 改成相對路徑：
+const API_BASE_URL = '/api';
 
   useEffect(() => {
     const fetchItems = async () => {
