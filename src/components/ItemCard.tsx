@@ -1,15 +1,13 @@
-// src/components/ItemCard.tsx
-import type { Item } from '../types/item';
+import type { OkaneEntry } from '../types/item';
 
-// 加上 export 關鍵字，這樣 App.tsx 才能匯入它
-export const ItemCard = ({ item }: { item: Item }) => (
+export const ItemCard = ({ item }: { item: OkaneEntry }) => (
   <div className="list-card">
     <div className="card-info">
-      <span className="item-title">{item.name}</span>
-      <span className="item-date">{item.createdAt}</span>
+      <span className="item-title">{item.summary}</span>
+      <span className="item-date">{item.year}年 {item.month}月</span>
     </div>
-    <span className={`status-badge ${item.status.toLowerCase().replace(' ', '-')}`}>
-      {item.status}
+    <span className={`status-badge ${item.stage.toLowerCase()}`}>
+      {item.stage}
     </span>
   </div>
 );

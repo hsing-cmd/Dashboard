@@ -5,8 +5,8 @@ export const EmptyState = () => {
   return (
     <div style={emptyStyles}>
       <div style={{ fontSize: '48px', marginBottom: '10px' }}>📂</div>
-      <h3>目前沒有任何項目</h3>
-      <p style={{ color: '#666' }}>請稍後再試，或嘗試新增一些資料。</p>
+      <h3>There are currently no projects.</h3>
+      <p style={{ color: '#666' }}>Please try again later, or try adding some data.</p>
     </div>
   );
 };
