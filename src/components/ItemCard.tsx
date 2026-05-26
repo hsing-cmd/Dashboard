@@ -6,8 +6,11 @@ export const ItemCard = ({ item }: { item: OkaneEntry }) => (
       <span className="item-title">{item.summary}</span>
       <span className="item-date">{item.year}年 {item.month}月</span>
     </div>
-    <span className={`status-badge ${item.stage.toLowerCase()}`}>
-      {item.stage}
-    </span>
+    <div className="card-right">
+      <span className="item-amount">¥{item.amount.toLocaleString()}</span>
+      <span className={`status-badge ${item.stage.toLowerCase()}`}>
+        {item.stage}
+      </span>
+    </div>
   </div>
 );
