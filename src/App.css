@@ -259,3 +259,36 @@
   font-size: 16px;
   font-weight: 700;
 }
+
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.filter-buttons button {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.filter-buttons button.active {
+  background: #2E75B6;
+  color: white;
+  border-color: #2E75B6;
+}
+
+.filter-buttons button:hover {
+  border-color: #2E75B6;
+}
+
+.total-amount {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #2E75B6;
+}
