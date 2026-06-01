@@ -3,10 +3,6 @@ import './App.css'
 import { ItemCard } from './components/ItemCard'
 import { EmptyState } from './components/EmptyState'
 import type { OkaneEntry } from './types/item'
-import { mockEntries } from './mockData';
-
-const jsonString = JSON.stringify(mockEntries, null, 2);
-console.log(jsonString);
 
 function App() {
   const [items, setItems] = useState<OkaneEntry[]>([]);
@@ -26,7 +22,7 @@ function App() {
         if (err instanceof Error) {
           setError(err.message);
         } else {
-          setError('發生未知錯誤');
+          setError('発生未知錯誤');
         }
       } finally {
         setLoading(false);
@@ -43,15 +39,12 @@ function App() {
     <div className="dashboard-container">
       <h1>OKANE Dashboard</h1>
       <div className="filter-buttons">
-
         <button onClick={() => setFilter('all')} className={filter === 'all' ? 'active' : ''}>全部</button>
-        <button onClick={() => setFilter('current')} className={filter === 'current' ? 'active' : ''}>Current</button>
-        <button onClick={() => setFilter('upcoming')} className={filter === 'upcoming' ? 'active' : ''}>Upcoming</button>
-        <button onClick={() => setFilter('past')} className={filter === 'past' ? 'active' : ''}>Past</button>
+        <button onClick={() => setFilter('in')} className={filter === 'in' ? 'active' : ''}>収入</button>
+        <button onClick={() => setFilter('out')} className={filter === 'out' ? 'active' : ''}>支出</button>
         <div className="total-amount">
           合計：¥{items
-
-            .filter(item => filter === 'all' || item.stage === filter)
+            .filter(item => filter === 'all' || item.type === filter)
             .reduce((sum, item) => sum + Number(item.amount), 0)
             .toLocaleString()}
         </div>
@@ -61,7 +54,7 @@ function App() {
       ) : (
         <div className="list-wrapper">
           {items
-            .filter(item => filter === 'all' || item.stage === filter)
+            .filter(item => filter === 'all' || item.type === filter)
             .map(item => (
               <ItemCard key={item.id} item={item} />
             ))}

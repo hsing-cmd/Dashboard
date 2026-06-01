@@ -292,3 +292,19 @@
   margin-bottom: 20px;
   color: #2E75B6;
 }
+
+.item-category {
+  font-size: 12px;
+  color: #2E75B6;
+  font-weight: 600;
+}
+
+.status-badge.income {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-badge.expense {
+  background: #fee2e2;
+  color: #991b1b;
+}
