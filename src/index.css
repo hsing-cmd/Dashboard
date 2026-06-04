@@ -39,3 +39,8 @@ h1 {
 .done { background-color: #e6ffed; color: #22863a; }
 .in-progress { background-color: #fff8c5; color: #9a6700; }
 .todo { background-color: #f6f8fa; color: #57606a; }
+
+.filter-buttons.sub {
+  margin-top: 8px;
+  margin-bottom: 12px;
+}

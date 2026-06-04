@@ -1,27 +1,34 @@
-// src/types/item.ts
+// Stage 的類型
+export type Stage = 'target' | 'upcoming' | 'realized';
+
+// Confidence 只有 upcoming 才有
+export type Confidence = 'committed' | 'expected' | 'possible';
+
+// Type 收入或支出
+export type EntryType = 'in' | 'out';
 
 export interface OkaneEntry {
   id: string;
   team_id: string;
   year: number;
-  month: number;
+  month: number | null;
   day: number | null;
-  date: string | null;
-  type: string;          // 真實API是 "in" / "out"
-  stage: string;         // 真實API是 "realized" 等等
-  confidence: string | null;  // 真實API可能是 null！
+  date: string | null;        // realized 一定要有，格式 YYYY-MM-DD
+  type: EntryType;
+  stage: Stage;
+  confidence: Confidence | null; // upcoming 必填，其他為 null
   category: string;
-  amount: string;        // 已經是 string 
-  summary: string | null;     // 真實API可能是 null！
-  contact: string | null;     // 真實API可能是 null！
-  note: string | null;        // 真實API可能是 null！
-  tags: string | null;        // 真實API可能是 null！
-  member_id: string | null;   // 真實API可能是 null！
+  amount: number;
+  summary: string | null;
+  contact: string | null;
+  note: string | null;
+  tags: string | null;
+  member_id: string | null;
   version: number;
-  created_at: string;         // 真實API是字串！
-  updated_at: string;         // 真實API是字串！
+  created_at: string;
+  updated_at: string;
   created_by: string;
   updated_by: string;
-  member_name: string | null; // 新增！真實API有這個欄位
-  metadata: string | null;    // 新增！真實API有這個欄位
+  member_name: string | null;
+  metadata: string | null;
 }

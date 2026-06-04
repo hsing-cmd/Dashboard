@@ -51,6 +51,56 @@
         "member_name": "小松"
       },
       {
+        "id": "test-target-1",
+        "team_id": "azukaritai",
+        "year": 2026,
+        "month": null,
+        "day": null,
+        "date": null,
+        "type": "in",
+        "stage": "target",
+        "confidence": null,
+        "category": "売上高",
+        "tags": null,
+        "member_id": "jun",
+        "amount": "10000000",
+        "summary": "2026年度 売上目標",
+        "contact": null,
+        "note": null,
+        "metadata": null,
+        "version": 1,
+        "created_at": "1748217600",
+        "updated_at": "1748217600",
+        "created_by": "jun",
+        "updated_by": "jun",
+        "member_name": "jun"
+      },
+      {
+        "id": "test-upcoming-1",
+        "team_id": "azukaritai",
+        "year": 2026,
+        "month": 6,
+        "day": null,
+        "date": null,
+        "type": "in",
+        "stage": "upcoming",
+        "confidence": "committed",
+        "category": "売上高",
+        "tags": null,
+        "member_id": "jun",
+        "amount": "800000",
+        "summary": "6月 売上予定",
+        "contact": "A株式会社",
+        "note": null,
+        "metadata": null,
+        "version": 1,
+        "created_at": "1748217600",
+        "updated_at": "1748217600",
+        "created_by": "jun",
+        "updated_by": "jun",
+        "member_name": "jun"
+      },
+      {
         "id": "01KSRDCFKZXX4JJZ234N473MG9",
         "team_id": "azukaritai",
         "year": 2026,
@@ -1078,15 +1128,6 @@
 
     ]
 }
-
-
-
-
-
-
-
-
-
 
 
 
