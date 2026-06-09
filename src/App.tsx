@@ -31,6 +31,9 @@ function App() {
   const [subFilter, setSubFilter] = useState<string>('all');
   const [stageFilter, setStageFilter] = useState<string>('all');
   const [selectedItem, setSelectedItem] = useState<OkaneEntry | null>(null);
+  const [activePage, setActivePage] = useState<'dashboard' | 'entries'>('entries');
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -59,6 +62,25 @@ function App() {
     .filter(item => subFilter === 'all' || getSubCategory(item.category) === subFilter)
     .filter(item => stageFilter === 'all' || item.stage === stageFilter);
 
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+  const paginatedItems = filteredItems.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const today = new Date();
+  const overdueItems = items.filter(item => {
+    if (item.stage !== 'upcoming') return false;
+    if (item.date) {
+      return new Date(item.date) <= today;
+    }
+    if (item.year && item.month) {
+      const itemDate = new Date(item.year, item.month - 1);
+      return itemDate <= today;
+    }
+    return false;
+  });
+
   const targetTotal = items
     .filter(i => i.stage === 'target' && i.type === 'in')
     .reduce((sum, i) => sum + Number(i.amount), 0);
@@ -71,6 +93,8 @@ function App() {
     .filter(i => i.stage === 'realized' && i.type === 'in')
     .reduce((sum, i) => sum + Number(i.amount), 0);
 
+  const gap = targetTotal - upcomingTotal - realizedTotal;
+
   if (loading) return <div className="state-msg">讀取中...</div>;
   if (error) return <div className="state-msg error">錯誤: {error}</div>;
 
@@ -78,65 +102,128 @@ function App() {
     <div className="dashboard-container">
       <h1>OKANE Dashboard</h1>
 
-      {/* 指標卡 */}
-      <div className="metric-grid">
-        <MetricCard label="目標（年次）" amount={targetTotal} sub="target" />
-        <MetricCard label="予定" amount={upcomingTotal} sub="upcoming" />
-        <MetricCard label="実績" amount={realizedTotal} sub="realized" />
+      <div className="tab-buttons">
+        <button
+          onClick={() => setActivePage('entries')}
+          className={activePage === 'entries' ? 'active' : ''}
+        >
+          案件一覧
+        </button>
+        <button
+          onClick={() => setActivePage('dashboard')}
+          className={activePage === 'dashboard' ? 'active' : ''}
+        >
+          ダッシュボード
+          {overdueItems.length > 0 && (
+            <span className="badge">{overdueItems.length}</span>
+          )}
+        </button>
       </div>
 
-      {/* 主篩選 */}
-      <div className="filter-buttons">
-        <button onClick={() => { setFilter('all'); setSubFilter('all'); }} className={filter === 'all' ? 'active' : ''}>全部</button>
-        <button onClick={() => { setFilter('in'); setSubFilter('all'); }} className={filter === 'in' ? 'active' : ''}>収入</button>
-        <button onClick={() => { setFilter('out'); setSubFilter('all'); }} className={filter === 'out' ? 'active' : ''}>支出</button>
-        <div className="total-amount">
-          合計：¥{filteredItems
-            .reduce((sum, item) => sum + Number(item.amount), 0)
-            .toLocaleString()}
-        </div>
-      </div>
-
-      {/* Stage 篩選 */}
-      <div className="filter-buttons sub">
-        <button onClick={() => setStageFilter('all')} className={stageFilter === 'all' ? 'active' : ''}>全て</button>
-        <button onClick={() => setStageFilter('target')} className={stageFilter === 'target' ? 'active' : ''}>目標</button>
-        <button onClick={() => setStageFilter('upcoming')} className={stageFilter === 'upcoming' ? 'active' : ''}>予定</button>
-        <button onClick={() => setStageFilter('realized')} className={stageFilter === 'realized' ? 'active' : ''}>実績</button>
-      </div>
-
-      {/* 収入細項篩選 */}
-      {filter === 'in' && (
-        <div className="filter-buttons sub">
-          <button onClick={() => setSubFilter('all')} className={subFilter === 'all' ? 'active' : ''}>全て</button>
-          <button onClick={() => setSubFilter('売上')} className={subFilter === '売上' ? 'active' : ''}>売上</button>
-          <button onClick={() => setSubFilter('チーム間')} className={subFilter === 'チーム間' ? 'active' : ''}>チーム間</button>
-        </div>
-      )}
-
-      {/* 支出細項篩選 */}
-      {filter === 'out' && (
-        <div className="filter-buttons sub">
-          <button onClick={() => setSubFilter('all')} className={subFilter === 'all' ? 'active' : ''}>全て</button>
-          <button onClick={() => setSubFilter('人件費')} className={subFilter === '人件費' ? 'active' : ''}>人件費</button>
-          <button onClick={() => setSubFilter('運営費')} className={subFilter === '運営費' ? 'active' : ''}>運営費</button>
-          <button onClick={() => setSubFilter('設備費')} className={subFilter === '設備費' ? 'active' : ''}>設備費</button>
-          <button onClick={() => setSubFilter('交通・出張費')} className={subFilter === '交通・出張費' ? 'active' : ''}>交通・出張費</button>
-        </div>
-      )}
-
-      {filteredItems.length === 0 ? (
-        <EmptyState />
-      ) : (
-        <div className="list-wrapper">
-          {filteredItems.map(item => (
-            <ItemCard
-              key={item.id}
-              item={item}
-              onClick={() => setSelectedItem(item)}
+      {activePage === 'dashboard' && (
+        <>
+          <div className="metric-grid">
+            <MetricCard label="目標（年次）" amount={targetTotal} sub="target" />
+            <MetricCard label="予定" amount={upcomingTotal} sub="upcoming" />
+            <MetricCard label="実績" amount={realizedTotal} sub="realized" />
+            <MetricCard
+              label="目標まであと"
+              amount={Math.abs(gap)}
+              sub={gap > 0 ? '不足' : '達成'}
             />
-          ))}
-        </div>
+          </div>
+
+          {overdueItems.length > 0 && (
+            <div className="overdue-section">
+              <h2>⚠️ 請求書の発行を確認してください</h2>
+              <div className="list-wrapper">
+                {overdueItems.map(item => (
+                  <ItemCard
+                    key={item.id}
+                    item={item}
+                    onClick={() => setSelectedItem(item)}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </>
+      )}
+
+      {activePage === 'entries' && (
+        <>
+          <div className="filter-buttons">
+            <button onClick={() => { setFilter('all'); setSubFilter('all'); setCurrentPage(1); }} className={filter === 'all' ? 'active' : ''}>全部</button>
+            <button onClick={() => { setFilter('in'); setSubFilter('all'); setCurrentPage(1); }} className={filter === 'in' ? 'active' : ''}>収入</button>
+            <button onClick={() => { setFilter('out'); setSubFilter('all'); setCurrentPage(1); }} className={filter === 'out' ? 'active' : ''}>支出</button>
+            <div className="total-amount">
+              合計：¥{filteredItems
+                .reduce((sum, item) => sum + Number(item.amount), 0)
+                .toLocaleString()}
+            </div>
+          </div>
+
+          <div className="filter-buttons sub">
+            <button onClick={() => { setStageFilter('all'); setCurrentPage(1); }} className={stageFilter === 'all' ? 'active' : ''}>全て</button>
+            <button onClick={() => { setStageFilter('target'); setCurrentPage(1); }} className={stageFilter === 'target' ? 'active' : ''}>目標</button>
+            <button onClick={() => { setStageFilter('upcoming'); setCurrentPage(1); }} className={stageFilter === 'upcoming' ? 'active' : ''}>予定</button>
+            <button onClick={() => { setStageFilter('realized'); setCurrentPage(1); }} className={stageFilter === 'realized' ? 'active' : ''}>実績</button>
+          </div>
+
+          {filter === 'in' && (
+            <div className="filter-buttons sub">
+              <button onClick={() => { setSubFilter('all'); setCurrentPage(1); }} className={subFilter === 'all' ? 'active' : ''}>全て</button>
+              <button onClick={() => { setSubFilter('売上'); setCurrentPage(1); }} className={subFilter === '売上' ? 'active' : ''}>売上</button>
+              <button onClick={() => { setSubFilter('チーム間'); setCurrentPage(1); }} className={subFilter === 'チーム間' ? 'active' : ''}>チーム間</button>
+            </div>
+          )}
+
+          {filter === 'out' && (
+            <div className="filter-buttons sub">
+              <button onClick={() => { setSubFilter('all'); setCurrentPage(1); }} className={subFilter === 'all' ? 'active' : ''}>全て</button>
+              <button onClick={() => { setSubFilter('人件費'); setCurrentPage(1); }} className={subFilter === '人件費' ? 'active' : ''}>人件費</button>
+              <button onClick={() => { setSubFilter('運営費'); setCurrentPage(1); }} className={subFilter === '運営費' ? 'active' : ''}>運営費</button>
+              <button onClick={() => { setSubFilter('設備費'); setCurrentPage(1); }} className={subFilter === '設備費' ? 'active' : ''}>設備費</button>
+              <button onClick={() => { setSubFilter('交通・出張費'); setCurrentPage(1); }} className={subFilter === '交通・出張費' ? 'active' : ''}>交通・出張費</button>
+            </div>
+          )}
+
+          {paginatedItems.length === 0 ? (
+            <EmptyState />
+          ) : (
+            <div className="list-wrapper">
+              {paginatedItems.map(item => (
+                <ItemCard
+                  key={item.id}
+                  item={item}
+                  onClick={() => setSelectedItem(item)}
+                />
+              ))}
+            </div>
+          )}
+
+          <div className="pagination">
+            <button
+              onClick={() => {
+                setCurrentPage(p => p - 1);
+                window.scrollTo(0, 0);
+              }}
+              disabled={currentPage === 1}
+            >
+              ←
+            </button>
+            <span>{currentPage} / {totalPages}</span>
+            <button
+              onClick={() => {
+                setCurrentPage(p => p + 1);
+                window.scrollTo(0, 0);
+              }}
+              disabled={currentPage === totalPages}
+            >
+              →
+            </button>
+          </div>
+        </>
       )}
 
       <SidePanel
@@ -144,6 +231,10 @@ function App() {
         onClose={() => setSelectedItem(null)}
         onSave={(updated) => {
           setItems(prev => prev.map(i => i.id === updated.id ? updated : i));
+          setSelectedItem(null);
+        }}
+        onDelete={(id) => {
+          setItems(prev => prev.filter(i => i.id !== id));
           setSelectedItem(null);
         }}
       />
