@@ -1,5 +1,5 @@
 import type { OkaneEntry } from './types/item';
-
+ 
 export const mockEntries: OkaneEntry[] = [
   // target（年度目標）- month/day/date 為 null
   {
@@ -26,6 +26,7 @@ export const mockEntries: OkaneEntry[] = [
     updated_by: "Joanna",
     member_name: "Joanna",
     metadata: null,
+    splits: null,
   },
   {
     id: "t2",
@@ -51,8 +52,9 @@ export const mockEntries: OkaneEntry[] = [
     updated_by: "Joanna",
     member_name: "Joanna",
     metadata: null,
+    splits: null,
   },
-
+ 
   // upcoming（予定）- confidence 必填
   {
     id: "u1",
@@ -78,6 +80,10 @@ export const mockEntries: OkaneEntry[] = [
     updated_by: "Joanna",
     member_name: "Joanna",
     metadata: null,
+    splits: [
+      { member_id: "member-001", member_name: "Joanna", amount: 500000 },
+      { member_id: "member-002", member_name: "Keiichi", amount: 300000 },
+    ],
   },
   {
     id: "u2",
@@ -103,6 +109,7 @@ export const mockEntries: OkaneEntry[] = [
     updated_by: "Joanna",
     member_name: null,
     metadata: null,
+    splits: null,
   },
   {
     id: "u3",
@@ -128,8 +135,9 @@ export const mockEntries: OkaneEntry[] = [
     updated_by: "Joanna",
     member_name: null,
     metadata: null,
+    splits: null,
   },
-
+ 
   // realized（実績）- date 必填
   {
     id: "r1",
@@ -155,6 +163,7 @@ export const mockEntries: OkaneEntry[] = [
     updated_by: "Joanna",
     member_name: "Joanna",
     metadata: null,
+    splits: null,
   },
   {
     id: "r2",
@@ -180,6 +189,7 @@ export const mockEntries: OkaneEntry[] = [
     updated_by: "Joanna",
     member_name: null,
     metadata: null,
+    splits: null,
   },
   {
     id: "r3",
@@ -205,5 +215,6 @@ export const mockEntries: OkaneEntry[] = [
     updated_by: "Joanna",
     member_name: "Joanna",
     metadata: null,
+    splits: null,
   },
 ];

@@ -7,16 +7,23 @@ export type Confidence = 'committed' | 'expected' | 'possible';
 // Type 收入或支出
 export type EntryType = 'in' | 'out';
 
+// Split 分帳明細
+export interface SplitEntry {
+  member_id: string;
+  member_name: string;
+  amount: number;
+}
+
 export interface OkaneEntry {
   id: string;
   team_id: string;
   year: number;
   month: number | null;
   day: number | null;
-  date: string | null;        // realized 一定要有，格式 YYYY-MM-DD
+  date: string | null;
   type: EntryType;
   stage: Stage;
-  confidence: Confidence | null; // upcoming 必填，其他為 null
+  confidence: Confidence | null;
   category: string;
   amount: number;
   summary: string | null;
@@ -31,4 +38,5 @@ export interface OkaneEntry {
   updated_by: string;
   member_name: string | null;
   metadata: string | null;
+  splits: SplitEntry[] | null; // 新增
 }
