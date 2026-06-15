@@ -81,9 +81,9 @@
       "year": 2026,
       "month": 6,
       "day": null,
-      "date": null,
+      "date": "2026-06-15",
       "type": "in",
-      "stage": "upcoming",
+      "stage": "realized",
       "confidence": "committed",
       "category": "売上高",
       "tags": null,
@@ -1125,6 +1125,266 @@
       "updated_at": "1780009532685",
       "updated_by": "jun",
       "member_name": "小松"
+    }
+  ],
+  "member_targets": [
+    {
+      "id": "mt1",
+      "member_name": "小松",
+      "member_id": "jun",
+      "year": 2025,
+      "quarter": "Q1",
+      "amount": 4500000
+    },
+    {
+      "id": "mt2",
+      "member_name": "小松",
+      "member_id": "jun",
+      "year": 2025,
+      "quarter": "Q2",
+      "amount": 4500000
+    },
+    {
+      "id": "mt3",
+      "member_name": "小松",
+      "member_id": "jun",
+      "year": 2025,
+      "quarter": "Q3",
+      "amount": 4500000
+    },
+    {
+      "id": "mt4",
+      "member_name": "小松",
+      "member_id": "jun",
+      "year": 2025,
+      "quarter": "Q4",
+      "amount": 4500000
+    },
+    {
+      "id": "mt5",
+      "member_name": "谷藤",
+      "member_id": "keiichi",
+      "year": 2025,
+      "quarter": "Q1",
+      "amount": 2175000
+    },
+    {
+      "id": "mt6",
+      "member_name": "谷藤",
+      "member_id": "keiichi",
+      "year": 2025,
+      "quarter": "Q2",
+      "amount": 2175000
+    },
+    {
+      "id": "mt7",
+      "member_name": "谷藤",
+      "member_id": "keiichi",
+      "year": 2025,
+      "quarter": "Q3",
+      "amount": 3000000
+    },
+    {
+      "id": "mt8",
+      "member_name": "谷藤",
+      "member_id": "keiichi",
+      "year": 2025,
+      "quarter": "Q4",
+      "amount": 3000000
+    },
+    {
+      "id": "mt9",
+      "member_name": "清水",
+      "member_id": "noriyuki",
+      "year": 2025,
+      "quarter": "Q1",
+      "amount": 2250000
+    },
+    {
+      "id": "mt10",
+      "member_name": "清水",
+      "member_id": "noriyuki",
+      "year": 2025,
+      "quarter": "Q2",
+      "amount": 2250000
+    },
+    {
+      "id": "mt11",
+      "member_name": "清水",
+      "member_id": "noriyuki",
+      "year": 2025,
+      "quarter": "Q3",
+      "amount": 3000000
+    },
+    {
+      "id": "mt12",
+      "member_name": "清水",
+      "member_id": "noriyuki",
+      "year": 2025,
+      "quarter": "Q4",
+      "amount": 3000000
+    },
+    {
+      "id": "mt13",
+      "member_name": "Ashley",
+      "member_id": "ashley",
+      "year": 2025,
+      "quarter": "Q1",
+      "amount": 1950000
+    },
+    {
+      "id": "mt14",
+      "member_name": "Ashley",
+      "member_id": "ashley",
+      "year": 2025,
+      "quarter": "Q2",
+      "amount": 1950000
+    },
+    {
+      "id": "mt15",
+      "member_name": "Ashley",
+      "member_id": "ashley",
+      "year": 2025,
+      "quarter": "Q3",
+      "amount": 0
+    },
+    {
+      "id": "mt16",
+      "member_name": "Ashley",
+      "member_id": "ashley",
+      "year": 2025,
+      "quarter": "Q4",
+      "amount": 0
+    }
+  ],
+  "member_realized": [
+    {
+      "id": "mr1",
+      "member_name": "小松",
+      "member_id": "jun",
+      "year": 2025,
+      "quarter": "Q1",
+      "amount": 8244037
+    },
+    {
+      "id": "mr2",
+      "member_name": "小松",
+      "member_id": "jun",
+      "year": 2025,
+      "quarter": "Q2",
+      "amount": 6670889
+    },
+    {
+      "id": "mr3",
+      "member_name": "小松",
+      "member_id": "jun",
+      "year": 2025,
+      "quarter": "Q3",
+      "amount": 7146320
+    },
+    {
+      "id": "mr4",
+      "member_name": "小松",
+      "member_id": "jun",
+      "year": 2025,
+      "quarter": "Q4",
+      "amount": 5242500
+    },
+    {
+      "id": "mr5",
+      "member_name": "谷藤",
+      "member_id": "keiichi",
+      "year": 2025,
+      "quarter": "Q1",
+      "amount": 1714763
+    },
+    {
+      "id": "mr6",
+      "member_name": "谷藤",
+      "member_id": "keiichi",
+      "year": 2025,
+      "quarter": "Q2",
+      "amount": 1244111
+    },
+    {
+      "id": "mr7",
+      "member_name": "谷藤",
+      "member_id": "keiichi",
+      "year": 2025,
+      "quarter": "Q3",
+      "amount": 1263680
+    },
+    {
+      "id": "mr8",
+      "member_name": "谷藤",
+      "member_id": "keiichi",
+      "year": 2025,
+      "quarter": "Q4",
+      "amount": 6201000
+    },
+    {
+      "id": "mr9",
+      "member_name": "清水",
+      "member_id": "noriyuki",
+      "year": 2025,
+      "quarter": "Q1",
+      "amount": 1648000
+    },
+    {
+      "id": "mr10",
+      "member_name": "清水",
+      "member_id": "noriyuki",
+      "year": 2025,
+      "quarter": "Q2",
+      "amount": 1900000
+    },
+    {
+      "id": "mr11",
+      "member_name": "清水",
+      "member_id": "noriyuki",
+      "year": 2025,
+      "quarter": "Q3",
+      "amount": 5702000
+    },
+    {
+      "id": "mr12",
+      "member_name": "清水",
+      "member_id": "noriyuki",
+      "year": 2025,
+      "quarter": "Q4",
+      "amount": 3170000
+    },
+    {
+      "id": "mr13",
+      "member_name": "Ashley",
+      "member_id": "ashley",
+      "year": 2025,
+      "quarter": "Q1",
+      "amount": 2996000
+    },
+    {
+      "id": "mr14",
+      "member_name": "Ashley",
+      "member_id": "ashley",
+      "year": 2025,
+      "quarter": "Q2",
+      "amount": 4182000
+    },
+    {
+      "id": "mr15",
+      "member_name": "Ashley",
+      "member_id": "ashley",
+      "year": 2025,
+      "quarter": "Q3",
+      "amount": 0
+    },
+    {
+      "id": "mr16",
+      "member_name": "Ashley",
+      "member_id": "ashley",
+      "year": 2025,
+      "quarter": "Q4",
+      "amount": 0
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

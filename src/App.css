@@ -380,3 +380,25 @@
   color: #1a1a2e;
   margin: 0;
 }
+
+.comment-input-group {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.comment-input-group button {
+  padding: 6px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  font-size: 13px;
+  color: #1a1a2e;
+  white-space: nowrap;
+}
+
+.comment-input-group button:hover {
+  border-color: #2E75B6;
+  color: #2E75B6;
+}
