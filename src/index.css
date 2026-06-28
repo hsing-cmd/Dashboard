@@ -1,0 +1,46 @@
+.dashboard-container {
+  padding: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #333;
+}
+
+h1 {
+  border-bottom: 2px solid #646cff;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+.list-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fdfdfd;
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border: 1px solid #eee;
+}
+
+.item-title {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.done { background-color: #e6ffed; color: #22863a; }
+.in-progress { background-color: #fff8c5; color: #9a6700; }
+.todo { background-color: #f6f8fa; color: #57606a; }
+
+.filter-buttons.sub {
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
